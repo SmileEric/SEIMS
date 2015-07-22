@@ -23,21 +23,22 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	mdi.SetAuthor("Wang Lin");
 	mdi.SetClass("NitrificationAndAmmoniaVolatilization", "Nitrification and Ammonia volatilization.");
 	mdi.SetDescription("Nitrification and Ammonia volatilization.");
-	mdi.SetEmail("");
+	mdi.SetEmail("SEIMS2015@163.com");
 	mdi.SetHelpfile("NitrificationAndAmmoniaVolatilization.chm");
 	mdi.SetID("NitrificationAndAmmoniaVolatilization");
 	mdi.SetName("NitrificationAndAmmoniaVolatilization");
 	mdi.SetVersion("0.1");
-	mdi.SetWebsite("http://www.website.com");
+	mdi.SetWebsite("http://seims.github.io/SEIMS");
 
 	mdi.AddParameter("catEF", "", "volatilization cation exchange factor", "file.in", DT_Single); 
 
-	mdi.AddParameter("RootDepth","m","Root depth","ParameterDB_WaterBalance", DT_Raster);
+	//mdi.AddParameter("RootDepth","m","Root depth","ParameterDB_WaterBalance", DT_Raster);
 	mdi.AddParameter("Wiltingpoint_2D","m3/m3","Plant wilting point moisture","ParameterDB_WaterBalance", DT_Array2D);
 	mdi.AddParameter("FieldCap_2D", "%", "Field capacity","ParameterDB_WaterBalance", DT_Array2D);
 	
 	mdi.AddInput("D_SOTE","oC", "Soil Temperature","Module", DT_Raster);
 	mdi.AddInput("D_SOMO_2D", "%", "Soil Moisture", "Module", DT_Array2D);
+	mdi.AddInput("D_Depth","mm","depth of the layer","Module", DT_Array2D);
 	mdi.AddInput("D_Nitrate", "kg N/ha", "amount of nitrate", "Module", DT_Array2D);
 	mdi.AddInput("D_Ammon", "kg N/ha", "ammonium pool for soil nitrogen", "Module", DT_Array2D);
 	

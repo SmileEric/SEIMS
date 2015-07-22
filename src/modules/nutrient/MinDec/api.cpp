@@ -23,12 +23,12 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	mdi.SetAuthor("Wang Lin");
 	mdi.SetClass("MineralizationAndDecomposition", "Mineralization and decomposition/immobilization.");
 	mdi.SetDescription("Mineralization and decomposition/immobilization of residue and humus.");
-	mdi.SetEmail("");
+	mdi.SetEmail("SEIMS2015@163.com");
 	mdi.SetHelpfile("MineralizationAndDecomposition.chm");
 	mdi.SetID("MineralizationAndDecomposition");
 	mdi.SetName("MineralizationAndDecomposition");
 	mdi.SetVersion("0.1");
-	mdi.SetWebsite("http://www.website.com");
+	mdi.SetWebsite("http://seims.github.io/SEIMS");
 
 	mdi.AddParameter("RateConst", "", "rate constant", "file.in", DT_Single); 
 	mdi.AddParameter("HumNF", "m", "fraction of humic nitrogen in the active pool", "file.in", DT_Single); 
@@ -36,17 +36,20 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	mdi.AddParameter("RateCoeR", "", "rate coefficient for mineralization of the residue fresh organic nutrients", "file.in", DT_Single); 
 	mdi.AddParameter("ConSoluP", "mg/kg", "concentration of solution phosphorus all layers", "file.in", DT_Single);
 
-	mdi.AddParameter("RootDepth", "mm", "depth from the soil surface", "file.in", DT_Raster);
+	//mdi.AddParameter("RootDepth", "mm", "depth from the soil surface", "file.in", DT_Raster);
 
 	//mdi.AddParameter("Res", "kg/ha", "residue in layer ly", "ParameterDB_soil", DT_Array2D);
 	//mdi.AddParameter("OrgCar", "%", "amount of organic carbon in the layer", "ParameterDB_soil", DT_Array2D);  
+	//mdi.AddParameter("SOM", "%", "amount of soil organic matter in the layer", "ParameterDB_soil", DT_Array2D);
 	mdi.AddParameter("Density_2D", "g/cm3", "Soil density", "ParameterDB_WaterBalance", DT_Array2D);
 	mdi.AddParameter("FieldCap_2D", "%", "Field capacity","ParameterDB_WaterBalance", DT_Array2D);
 
 	mdi.AddInput("D_SOTE","oC", "Soil Temperature","Module", DT_Raster);
 	mdi.AddInput("D_Nitrate", "kg N/ha", "amount of nitrate", "Module", DT_Array2D);
 	mdi.AddInput("D_SOMO_2D","%","Soil Moisture","Module", DT_Array2D);
+	mdi.AddInput("D_Depth","mm","depth of the layer","Module", DT_Array2D);
 	
+	//mdi.AddOutput("OrgCar", "%", "amount of organic carbon in the layer", DT_Array2D);
 	mdi.AddOutput("ConHumOrgN", "mg/kg", "concentration of humic organic nitrogen in the layer", DT_Array2D); 
 	mdi.AddOutput("ConActOrgN", "mg/kg", "concentration of nitrogen in the active organic pool", DT_Array2D); 
 	mdi.AddOutput("ConStaOrgN", "mg/kg", "concentration of nitrogen in the stable organic pool", DT_Array2D);
@@ -58,6 +61,7 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	
 	mdi.AddOutput("TF","", "nutrient cycling temperature factor", DT_Array2D);
 	mdi.AddOutput("WF", "", "nutrient cycling water factor", DT_Array2D); 
+
 	mdi.AddOutput("TraOrgN", "kg N/ha", "amount of nitrogen transferred between the active and stable organic pools", DT_Array2D); 
 	mdi.AddOutput("MinHumN", "", "nitrogen mineralized from the humus active organic N pool", DT_Array2D);
 	mdi.AddOutput("CNRat", "", "C:N ratio of the residue in the soil layer", DT_Array2D);

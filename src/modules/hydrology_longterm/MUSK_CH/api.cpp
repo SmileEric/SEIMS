@@ -1,3 +1,15 @@
+/*!
+ * \file api.cpp
+ * \brief Define MetadataInfo of MUSK_CH module.
+ *
+ * 
+ *
+ * \author Junzhi Liu
+ * \version 1.0
+ * \date 23-Febrary-2011
+ *
+ * 
+ */
 #include <stdio.h>
 #include <string>
 #include "api.h"
@@ -7,13 +19,29 @@
 #include "SimulationModule.h"
 #include "MetadataInfo.h"
 #include "MetadataInfoConst.h"
-
+/** \defgroup MUSKINGUM_CH
+ * \ingroup Hydrology_longterm
+ * \brief 
+ *
+ *
+ *
+ */
+//! Get instance of SimulationModule class
 extern "C" SEIMS_MODULE_API SimulationModule* GetInstance()
 {
 	return new MUSK_CH();
 }
 
-// function to return the XML Metadata document string
+/*!
+ * \ingroup MUSKINGUM_CH
+ * \brief function to return the XML Metadata document string
+ *
+ * 
+ *
+ * \param[in] 
+ * \param[out] 
+ * \return
+ */
 extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 {
 	string res = "";
@@ -23,12 +51,12 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	mdi.SetAuthor("Liu Junzhi");
 	mdi.SetClass("Channelflow", "channel flow routing using variable storage method.");
 	mdi.SetDescription("channel flow routing using variable storage method.");
-	mdi.SetEmail("");
+	mdi.SetEmail("SEIMS2015@163.com");
 	mdi.SetHelpfile("MUSK_CH.chm");
 	mdi.SetID("MUSK_CH");
 	mdi.SetName("MUSK_CH");
 	mdi.SetVersion("0.1");
-	mdi.SetWebsite("http://www.website.com");
+	mdi.SetWebsite("http://seims.github.io/SEIMS");
 
 	mdi.AddParameter("DT_CH","s","time step","file.in",DT_Single); 
 	mdi.AddParameter("K_chb","mm/h","hydraulic conductivity of the channel bed","ParameterDB_Discharge", DT_Single);
@@ -39,15 +67,14 @@ extern "C" SEIMS_MODULE_API const char* MetadataInformation()
 	mdi.AddParameter("Vseep0","m3/s","the initial volume of transmission loss to the deep aquifer over the time interval","ParameterDB_Discharge", DT_Single);
 	mdi.AddParameter("a_bnk","","bank flow recession constant","ParameterDB_Discharge", DT_Single);
 	mdi.AddParameter("b_bnk","","bank storage loss coefficient","ParameterDB_Discharge", DT_Single);
-	mdi.AddParameter("MSK_X","","muskingum weighing factor","ParameterDB_Discharge", DT_Single);
+	mdi.AddParameter("MSK_X","","muskingum weighting factor","ParameterDB_Discharge", DT_Single);
 	mdi.AddParameter("MSK_co1","","Weighting factor of bankful flow","ParameterDB_Discharge", DT_Single);
 	mdi.AddParameter("VelScaleFactor","","flow velocity scaling factor for calibration","ParameterDB_Discharge", DT_Single);
-
 	mdi.AddParameter("RchParam","","reach parameters", "reachparameters.txt",DT_Array2D);
 	//mdi.AddParameter("Vdiv","m3","diversion loss of the river reach", "diversionloss.txt",DT_Array1D);
 	//mdi.AddParameter("Vpoint","m3"," point source discharge", "diversionloss.txt",DT_Array1D);
-
 	mdi.AddParameter("subbasin","","subbasin grid","ParameterDB_Discharge", DT_Raster);
+
 	mdi.AddInput("D_SBOF","m3/s","overland flow to streams from each subbasin","Module", DT_Array1D);
 	mdi.AddInput("D_SBIF","m3/s","interflow to streams from each subbasin","Module", DT_Array1D);
 	mdi.AddInput("D_SBQG","m3/s","groundwater flow out of the subbasin","Module", DT_Array1D);
